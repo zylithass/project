@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> <!-- Character encoding set to UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures the page is responsive and sets the viewport width -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+    <title>Historical Places in India</title> <!-- Title of the webpage -->
+    <style>
+        #main-footer {
+    position: sticky;
+    bottom: 0;
+    transform: translateY(100%);
+    flex-shrink: 0;
+}
+
+footer {
+    background-color: lightgrey;
+    color: teal;
+    padding: 10px;
+    text-align: center;
+    
+}
+h3{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+ 
+.contact-info p,
+.contact-info a {
+    margin: 0;
+    padding: 5px 0;
+}
+
+.social-links a {
+    margin: 0 10px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.social-links a:hover {
+    text-decoration: underline;
+}
+
+        /* Basic styling for the body, header, footer, and content */
+        body {
+            margin: 0; /* Removes default margin */
+            font-family: Arial, sans-serif; /* Sets font family */
+            display: flex; /* Enables flexbox */
+            flex-direction: column; 
+            min-height: 100vh; /* Full height of viewport */
+            background-color: #f0f8f8; /* Light teal background */
+            color: #333; /* Dark gray text color */
+        }
+
+        header {
+            background-color: #008080; /* Teal background */
+            color: white; /* White text color */
+            text-align: center; /* Center-align text */
+            padding: 10px 0; /* Padding for header and footer */
+            width: 100%; /* Full width */
+            z-index: 1000; /* Higher stacking order */
+        }
+
+        header {
+            position: fixed; /* Fixes header at the top */
+            top: 0; /* Positions at the top */
+        }
+
+      
+
+        .logo {
+            float: left; /* Floats logo to the left */
+            margin-left: 20px; /* Adds left margin */
+            font-size: 1.2em; /* Increases font size */
+            font-weight: bold; /* Bold text */
+            display: flex; /* Flex container for logo text and image */
+            align-items: center; /* Align items vertically */
+        }
+
+        .logo img {
+            width: 80px; /* Logo image width */
+            height: 50px; /* Logo image height */
+            margin-right: 10px; /* Space between image and text */
+            border-radius: 50%;
+        }
+
+        .navbar {
+            float: right; /* Floats navbar to the right */
+            margin-right: 20px; /* Adds right margin */
+        }
+
+        .navbar a {
+            color: white; /* White text color */
+            text-decoration: none; /* Removes underline */
+            padding: 10px 15px; /* Padding around links */
+            display: inline-block; /* Inline block display */
+        }
+
+        .navbar a:hover {
+            background-color: #004d4d; /* Darker teal on hover */
+        }
+
+        .content {
+            padding: 60px 20px 60px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            margin: 70px 20px 20px;
+            min-height: calc(100vh - 160px);
+        }
+
+        .grid-container {
+            display: flex; /* Flex container */
+            flex-wrap: wrap; /* Wraps items */
+            justify-content: center; /* Center align items */
+            gap: 20px; /* Space between items */
+        }
+
+        .grid-item {
+            flex: 1 1 calc(33.333% - 40px); /* Item width */
+            box-sizing: border-box; /* Includes padding/border in size */
+            border: 1px solid #ccc; /* Light gray border */
+            padding: 20px; /* Padding inside */
+            background-color: #f9f9f9; /* Light gray background */
+            text-align: center; /* Center-align text */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+
+        .grid-item img {
+            width: 100%; /* Full width image */
+            height: auto; /* Maintains aspect ratio */
+            border-radius: 8px; /* Rounded corners */
+        }
+
+        .grid-item h2 {
+            font-size: 1.5em; /* Larger font size */
+            margin: 0.5em 0; /* Margin */
+            color: #008080; /* Teal color */
+        }
+
+        .grid-item p {
+            font-size: 1em; /* Default font size */
+            margin: 0.5em 0; /* Margin */
+            color: #555; /* Dark gray color */
+        }
+        .grid-item:hover
+         {
+            transform: scale(1.05);
+            background-color: lightblue;
+          padding: 10px;
+         border-radius: 5px;
+         border-style: solid;
+         border-color: rgb(207, 225, 237);
+         border-bottom: 3px solid teal;
+        }
+
+        .page {
+            display: none; /* Hide by default */
+        }
+        
+
+        .page.active {
+            display: block; /* Show active page */;
+           
+        }
+        h1 {
+    font-size: 68px;
+    text-align: left;
+    padding-right: 188px;
+    margin-left: 0px;
+    -webkit-background-clip: text;
+    color: white;
+    animation: slideIn 1s ease-in-out forwards;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+        #about-font{
+            font-family: Vesterbro, Times, serif;
+            font-weight: 700;
+            font-size: 3.2rem;
+            line-height: 1.3;
+            display: block;
+            color: rgb(32, 32, 32);
+            padding: 250px;
+   
+
+        }
+        .parallax {
+            /* The image used */
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJUAAACUCAMAAACtIJvYAAAAA1BMVEX///+nxBvIAAAALElEQVR4nO3BMQEAAADCoPVP7WkJoAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAGVrgAAQdwvSEAAAAASUVORK5CYII=');
+            
+            /* Set a specific height */
+            height: 150px;
+
+            /* Create the parallax scrolling effect */
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+        }
+        .parallax2{
+            /* The image used */
+            background-image: url('https://wallpapers.com/images/hd/high-resolution-black-background-l68adwwf4bt6pp83.jpg');
+            height: 100px;
+
+            /* Create the parallax scrolling effect */
+             background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+            font-size: 20px;
+            color: aliceblue;
+            text-align:center;
+
+        }
+        
+        ul{
+
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+li{
+line-height: 2;
+}
+#home p {
+            font-size: 1.5em;
+            color: #333;
+            text-align: center;
+        }
+
+
+        #home {
+            background-image: url('https://static.toiimg.com/thumb/107171869/south-india.jpg?width=636&height=358&resize=4'); /* URL */
+            padding: 200px 200px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            padding-left: 4%;
+            padding-right: 50%;
+        
+        }
+        .a{background-image: url(https://w0.peakpx.com/wallpaper/294/237/HD-wallpaper-aestheticcloudssara-aestethic-aesthetic-blanco-clouds-fondo-de-pantalla-ios14-iphone.jpg);
+        background-size: cover;}
+      
+
+    </style>
+</head>
+<body>
+    <!-- Header section with logo and navigation links -->
+    <header>
+        <div class="logo">
+            <!-- Logo image -->
+            <img src="data:image/jpeg;base64,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" width="300" height="200px"  
+            alt="Logo"> 
+        </div>
+        <div class="navbar">
+            <!-- Navigation links -->
+            <a href="#home" onclick="document.getElementById('home').classList.add('active'); document.getElementById('explore').classList.remove('active'); document.getElementById('about').classList.remove('active');">Home</a>
+            <a href="#explore" onclick="document.getElementById('home').classList.remove('active'); document.getElementById('explore').classList.add('active'); document.getElementById('about').classList.remove('active');">Explore</a>
+            <a href="#about" onclick="document.getElementById('home').classList.remove('active'); document.getElementById('explore').classList.remove('active'); document.getElementById('about').classList.add('active');">About</a>
+        </div>
+    </header>
+
+    <!-- Main content area -->
+    <div class="home">
+        <!-- Home page section -->
+            <div id="home" class="page active">
+            <h1>Historical Places in India</h1>
+       
+       
+            </div>
+            <div class="parallax2">
+                    
+            </div>
+
+           <!-- Explore page section with a grid layout for items -->
+        <div id="explore" class="page">
+            <div class="grid-container">
+                <div class="grid-item">
+                    <img src="https://lh7-us.googleusercontent.com/ejq8Bkhn-7jFrDSSt71340jBQPwOXcgPpylKEIaRwpVNTnpirt_GTTp3HG8H8mGWRs-MhYW_q1K1EUWW63C6V4F6_6dPF0WiNZJVx-mySla1ZqVLrtO6xHMH1b4H39dEqspgsdPMo2x9o-0oYjEYBQ" alt="Taj Mahal"> <!-- Replace with actual image URL -->
+                    <h2>Taj Mahal</h2>
+                    <p>The Taj Mahal, an ivory-white marble mausoleum on the south bank of the Yamuna river in Agra, is a UNESCO World Heritage Site.</p>
+                </div>
+                <div class="grid-item">
+                    <img src="https://lh7-us.googleusercontent.com/6aO-X6NyfCBpqXMQJJs3DgIpqIJOe36luBzyLeOsSVMlWPqbXV_e6YacD0Ka10knNAZt0npcmbnQtDr6EYUWNsFgrFnwJ5GXeBS_TQR_hvsXDZmDU6DbF2eI0w0yL4y58EySNDFp_lPjj3XJASeQmA" 
+                    alt="Qutub Minar"> 
+                    <h2>Qutub Minar</h2>
+                    <p>Qutub Minar, a UNESCO World Heritage Site, is a soaring, 73-meter high tower of victory, built in 1193.</p>
+                </div>
+                <div class="grid-item">
+                    <img src="https://lh7-us.googleusercontent.com/stByJfMnB4Jp25KW41EXKdcehvBdHYXBVzTzXETvGzTmHBsfnjifHYzKB-T0tD-0WZdLfu-bmDTDxbdfxXAYX_gvTEnRlyRVi6_SI9WqTJPJduWrtI57owXtOGuDMbdWJPyF1BqTxYE2EIXoRXM7VA"
+                     alt="India Gate"> <!--the images should have same width and height -->
+                    <h2>India Gate, Delhi</h2>
+                    <p>India Gate is a war memorial located astride the Rajpath, on the eastern edge of the "ceremonial axis" of New Delhi.</p>
+                </div>
+                <div class="grid-item">
+                    <img src="https://lh7-us.googleusercontent.com/B2zmHkFxoCjumxoeaIHAZ4CwfcHDxFFNugLQgyp8iAqLgNwwaNBc-s4ALZ6w-WdyOCfmU_CwWrQ55TGk_de1_VDLlwAno9VvkT0DGVfTGKnkuoOC3Jx8z5iQKGvRj8D9Oy9gaAtum9ZR-sw-W9riBQ"
+                    alt="agra fort">
+                    <h2>Agra Fort, Agra</h2>
+                    <p>This 16th-century historical fort was essentially a walled city that was built during the reign of Emperor Akbar. It boasts intricate artwork on marble and sandstone walls and is a medley of different architectural styles.</p>
+                    </div>
+                    <div class="grid-item">
+                        <img src="https://lh7-us.googleusercontent.com/0ok5LCBmiioUwTpavyKDguR4QoTnyVLOFmoXAgfUjveBxNWgPXQ4aSMyLdzJsuRpryUakHdWOEOnzx3dH2cmapaXxOOWjbPAuh_dG4NBOtYcwinKhXQmThJfsoD5bwF3HxH5yekfXo9c-0jhpoCH1g"
+                        alt="Fatehput sikri fort">
+                        <h2>Fatehpur Sikri Fort</h2>
+                        <p>An architectural gem in red sandstone, Fatehpur Sikri Fort’s credit goes to the great Mughal Emperor Akbar.</p>
+                    </div>
+                    <div class="grid-item">
+                        <img src="https://lh7-us.googleusercontent.com/tRcOpMjyIqjXqrNBXxoUmxdBbBoNTSeYONIc0J27sJ2kqM4K-bPQtSQAKMkJ413NhmbTlwshP9C8SjCf6JXL1rPUDnJDw28tZXlRR6FeLuAsCMiKyCMqLZb7kLrQ9ofPc0ByivvM8DdqKKDoqcZMUg"
+                        alt="jama masjid">
+                        <h2>Jama Masjid, Delhi</h2>
+                        <p>This architectural extravagance by the Mughal Emperor Shah Jahan is constructed with red sandstone and white marble. The focal points of the monument are its tall minarets, arched gateways, wide staircases, and a huge courtyard for prayers.
+
+                        </p>
+                    </div>
+                    <div class="grid-item">
+                        <img src="https://lh7-us.googleusercontent.com/OBCZyXzcE01JL_BZINushz4nm4lDNGNcl4-k-5PoxZ265trAes6zkgiTGP2adSJ7hyJN3CkkcnTu8f7f0GAI5PtwI34KXb18bL71_ZbWExKUUwMbnP237feFX-gTakT8WvYM1Zegma-3ykqWnklyIg"
+                        
+                        alt="red fort">
+                        <h2>
+                            Red Fort, Delhi
+                        </h2>
+                        <p>
+                            Constructed during the reign of Shah Jahan in the 17th century, Red Fort or Lal Qila, is one of the most popular historical buildings in India. The main highlights are its massive red sandstone walls, Mughal-style architecture, geometrical gardens, projecting balconies, and grand palaces and entertainment halls.
+                        </p>
+
+                    </div>
+                    
+                    <div class="grid-item">
+                        <img src="https://lh7-us.googleusercontent.com/G0FLH4T4H1TzZGkgcUj8riGtzeVeUGOFaVG5WFEV4VDw9AkUt5iseN-CmaN3z9VGT0m3p3A2BChh79wqSYayXSIbtLkyF7MYnt9GLLH0i2W6kEny0D3j_OZ582KIVM0Vdt5yEpAO2N_DAZCFSdLq8Q"
+
+                        alt="AJANTA AND ELLORA CAVES,AURANGABAD">
+                        <h2>
+                            Ajanta and Ellora Caves, Aurangabad                        </h2>
+                        <p>
+                            Ajanta and Ellora caves are among the most important monuments of India owing to the magnificent paintings of Ajanta and well-carved sculptures of Ellora. The rock-cut caves containing carvings are the finest examples of Indian paintings and sculptures. 
+
+                        </p>
+
+                    </div>
+                    <div class="grid-item">
+                        <img src="https://lh7-us.googleusercontent.com/l5qnnogA_Qk0X4rpqQTCvtYc7VCI4g3hghtIOWH1lXbJP0_YsxzzLPELDFk0GLT8hj7uOifCqcCMgtJJtgSYuNYSUtOL6uu0KJXN6F_62e6mOIuU6W2cGCcekVf5SweYjHe_jsCyxew4nfzc_bVCFQ"
+
+                        alt="Golden Temple, Amritsar
+                        ">
+                        <h2>Golden Temple, Amritsar
+                        </h2>
+                        <p>
+                            Also known as Sri Harmandir Sahib, this beautiful religious place of the Sikh community is all about tranquillity, humanity, and brotherhood. The two-storied structure has a unique domed architecture, with its top half clad in pure gold and the other half built with white marble. 
+                        </p>
+
+                    </div>
+
+            </div>
+        </div>
+
+       <div>
+         <div id="about" class="page">
+            <div id="about" class="page.active">
+                
+                <p></p>
+                
+            </div>
+           
+            
+            <div id="about"  class="a">
+                
+                <p id="about-font">~Designed and developed by NEHA~</p>
+                <div class="parallax2">
+                    
+               </div>
+               <h2>ABOUT US</h2>
+
+               <h3>At AE, we are driven by a relentless passion to redefine the future through the power of code. Our commitment to innovation is at the core of everything we do, pushing boundaries and challenging conventions to create cutting-edge solutions. By harnessing the latest technologies and fostering a culture of creativity, we transform ambitious ideas into groundbreaking products and services.
+
+               Our team of forward-thinking developers and engineers thrives on the excitement of solving complex problems and crafting elegant, efficient code. We believe that true innovation arises from the intersection of creativity and technical expertise. That’s why we continually invest in research, development, and skill-building, ensuring that our solutions not only meet today’s needs but also anticipate tomorrow’s challenges.
+               
+               At AE, we are not just coding—we are pioneering the next wave of technological advancements. Join us as we embark on a journey to shape the future, one line of code at a time             </h3>   
+            </div>
+        </div>
+       
+        </div>
+       
+
+    </div>
+
+    <!-- Footer section -->
+    <footer id="main-footer">
+        Designed and Developed by NEHA ZYL
+        <p>follow us on</p>
+        <a href="https://www.facebook.com/"><i class="fa-brands fa-facebook a"></i></a>
+         <a href="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i></a>
+         <a href="https://au.linkedin.com"> <i class="fa-brands fa-linkedin"></i></a>
+         <hr>
+    <ul type="none">
+        <li>
+         <b>MORE ABOUT US</b>
+        </li>
+        <li> <a href="https://www.google.co.in/">Contact us</a></li>
+        <li><a href="https://www.google.co.in/"> Investor relations</a></li>
+        <li><a href="https://www.google.co.in/">Careers</a></li>
+        <li><a href="https://www.google.co.in/">Transparency Center</a></li>
+    </ul>
+           
+        </footer>
+        
+       
+   
+</body>
+</html>
+
